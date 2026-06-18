@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KukScreen BETA (Web Edition)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="image_e0050f.jpg" alt="KukScreen Logo" id="logo">
+
+    <div class="glass-container" id="app-container">
+        
+        <div id="view-setup" class="view active">
+            <h1>Workspace Setup</h1>
+            <p>Connect your sources to begin.</p>
+            
+            <div class="control-group">
+                <button id="btn-screen" class="btn primary">Share Screen</button>
+                <button id="btn-camera" class="btn primary">Share Camera</button>
+            </div>
+
+            <div id="layout-controls" class="hidden">
+                <h3>Layout Configuration</h3>
+                <div class="control-group">
+                    <button id="btn-swap" class="btn secondary">Swap Main/Circle</button>
+                </div>
+                <div class="control-group">
+                    <label>Circle Size:</label>
+                    <select id="select-size" class="glass-select">
+                        <option value="small">Small</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Circle Position:</label>
+                    <select id="select-position" class="glass-select">
+                        <option value="bottom-left" selected>Bottom Left</option>
+                        <option value="bottom-right">Bottom Right</option>
+                        <option value="top-left">Top Left</option>
+                        <option value="top-right">Top Right</option>
+                    </select>
+                </div>
+                
+                <button id="btn-start-record" class="btn start-btn">Start Recording</button>
+            </div>
+        </div>
+
+        <div id="view-recording" class="view hidden">
+            <div class="recording-indicator">
+                <span class="red-dot"></span> Recording Live
+            </div>
+            <canvas id="live-canvas" width="1920" height="1080"></canvas>
+            <button id="btn-stop-record" class="btn danger">End Recording</button>
+        </div>
+
+        <div id="view-processing" class="view hidden">
+            <h1>Timelapse Settings</h1>
+            <p>Adjust the speed of your work session.</p>
+            
+            <div class="slider-container">
+                <label for="speed-slider">Speed: <span id="speed-label">100%</span> (Real Speed)</label>
+                <input type="range" id="speed-slider" min="100" max="1000" step="50" value="100">
+            </div>
+
+            <button id="btn-process" class="btn primary">Process Video</button>
+            
+            <div id="processing-status" class="hidden">
+                <p>Processing... Please wait.</p>
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <div id="view-preview" class="view hidden">
+            <h1>Ready!</h1>
+            <video id="preview-video" controls></video>
+            <div class="control-group">
+                <button id="btn-download" class="btn primary">Download MP4/WebM</button>
+                <button id="btn-restart" class="btn secondary">Record Another</button>
+            </div>
+        </div>
+
+    </div>
+
+    <video id="hidden-screen" autoplay muted playsinline class="hidden-element"></video>
+    <video id="hidden-camera" autoplay muted playsinline class="hidden-element"></video>
+    <video id="hidden-playback" class="hidden-element"></video>
+    <canvas id="process-canvas" width="1920" height="1080" class="hidden-element"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
